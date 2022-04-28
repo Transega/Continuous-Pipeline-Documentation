@@ -112,6 +112,39 @@ through the field in the database that contains the names.</p>
 <img alt="API request for county feature collection" src="../_images/AdminGeojson.png" />
 </figure>
 <p>API request for county feature collection</p>
+<ul class="simple">
+<li><p>Admistration level one (2)</p></li>
+</ul>
+<p><em>Administrative level two in the Kenya context means the sub-counties or constituencies</em></p>
+<p><em>There are the second leve of administrative boundary a number of administrative level two, forms a county</em></p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Sub-county list (admin 2)</p></li>
+</ol>
+</div></blockquote>
+<p>The query is made giving a county name; the api returns list of names sub-counties (admin 2) within a county, the names recieved from Admin1names are used to query for the names for the
+sub-counties</p>
+<p>county_name field of the ADM2DATA is filter and an iteration is done to the field of sub_county_names to get the names</p>
+<p><strong>The Query is done as follows</strong>
+<code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/AdminData/get_adm2_shapefile/?Get_sub_counties_names=Nairobi</span></code></p>
+<figure class="align-default">
+<img alt="API request for admin2 names" src="../_images/Admin2names.png" />
+</figure>
+<p>API request for admin2 names</p>
+<blockquote>
+<div><ol class="loweralpha simple" start="2">
+<li><p>Sub-County (admin2) dataset</p></li>
+</ol>
+</div></blockquote>
+<p>This api request returns the actual Geojson file given the admin2 name</p>
+<p>Note <strong>the name has to be in the array of sub_county_names since the data is a query to the database.</strong> It returns a feature collection</p>
+<p><strong>Admin 2 Geojson is queried as follows:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/AdminData/get_adm2_shapefile/?sub_county=Mogotio</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">sub_county=</span></code> the name of the sub_county is placed after the <strong>=</strong> sign</p>
+<figure class="align-default">
+<img alt="API request for sub_county feature collection" src="../_images/Admin2Geojson.png" />
+</figure>
+<p>API request for sub_county feature collection</p>
 </section>
 </section>
 

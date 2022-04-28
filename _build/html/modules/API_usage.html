@@ -113,7 +113,7 @@ through the field in the database that contains the names.</p>
 </figure>
 <p>API request for county feature collection</p>
 <ul class="simple">
-<li><p>Admistration level one (2)</p></li>
+<li><p>Admistration level two (2)</p></li>
 </ul>
 <p><em>Administrative level two in the Kenya context means the sub-counties or constituencies</em></p>
 <p><em>There are the second leve of administrative boundary a number of administrative level two, forms a county</em></p>
@@ -145,6 +145,39 @@ sub-counties</p>
 <img alt="API request for sub_county feature collection" src="../_images/Admin2Geojson.png" />
 </figure>
 <p>API request for sub_county feature collection</p>
+<ul class="simple">
+<li><p>Admistration level three (3)</p></li>
+</ul>
+<p><em>Administrative level three in the Kenya context means the wards</em></p>
+<p><em>This is the third administrative boundary</em></p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Wards list (admin 3)</p></li>
+</ol>
+</div></blockquote>
+<p>The query is made giving a sub-county name; the api returns list of names wards (admin 3) within a sub-county,
+the names recieved from Admin2names are used to query for the names for the wards</p>
+<p>sub_county_name field of the ADM3DATA is filtered and an iteration is done to the field of ward_names to get the names</p>
+<p><strong>The Query is done as follows</strong>
+<code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?Get_wards_in_sub_county=Mogotio</span></code></p>
+<figure class="align-default">
+<img alt="API request for admin3 names" src="../_images/Admin3names.png" />
+</figure>
+<p>API request for admin3 names</p>
+<blockquote>
+<div><ol class="loweralpha simple" start="2">
+<li><p>ward (admin3) dataset</p></li>
+</ol>
+</div></blockquote>
+<p>This api request returns the actual Geojson file given the admin3 name</p>
+<p>Note <strong>the name has to be in the array of ward names since the data is a query to the database.</strong> It returns a feature collection</p>
+<p><strong>Admin 3 Geojson is queried as follows:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?GetWardGeojson=Emining</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ward=</span></code> the name of the ward is placed after the <strong>=</strong> sign</p>
+<figure class="align-default">
+<img alt="API request for ward feature collection" src="../_images/Admin3Geojson.png" />
+</figure>
+<p>API request for ward feature collection</p>
 </section>
 </section>
 

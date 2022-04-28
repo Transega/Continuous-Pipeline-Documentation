@@ -52,7 +52,7 @@ County Geojson is queried as follows:
 
 API request for county feature collection
 
-* Admistration level one (2)
+* Admistration level two (2)
 
 *Administrative level two in the Kenya context means the sub-counties or constituencies*
 
@@ -92,6 +92,50 @@ Note **the name has to be in the array of sub_county_names since the data is a q
    :alt: API request for sub_county feature collection
 
 API request for sub_county feature collection
+
+
+* Admistration level three (3)
+
+*Administrative level three in the Kenya context means the wards*
+
+*This is the third administrative boundary*
+
+    a. Wards list (admin 3)
+
+The query is made giving a sub-county name; the api returns list of names wards (admin 3) within a sub-county, 
+the names recieved from Admin2names are used to query for the names for the wards 
+
+sub_county_name field of the ADM3DATA is filtered and an iteration is done to the field of ward_names to get the names
+
+
+**The Query is done as follows**
+``http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?Get_wards_in_sub_county=Mogotio``
+
+
+.. figure:: ../Images/Admin3names.png
+   :alt: API request for admin3 names 
+
+API request for admin3 names
+
+
+    b. ward (admin3) dataset
+
+This api request returns the actual Geojson file given the admin3 name 
+
+Note **the name has to be in the array of ward names since the data is a query to the database.** It returns a feature collection
+
+**Admin 3 Geojson is queried as follows:**
+
+``http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?GetWardGeojson=Emining``
+
+``ward=`` the name of the ward is placed after the **=** sign
+
+.. figure:: ../Images/Admin3Geojson.png
+   :alt: API request for ward feature collection
+
+API request for ward feature collection
+
+
 
 
 

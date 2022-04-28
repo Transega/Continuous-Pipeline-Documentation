@@ -41,6 +41,19 @@ This api request returns the actual Geojson file given the county name
 
 Note **the name has to be in the array since the data is a query to the database.** It returns a feature collection
 
+County Geojson is queried as follows:
+
+``http://208.85.21.253:8080/AdminData/get_adm1_shapefile/?Get_county=Kisumu``
+
+`` Get_county=`` the name of the county is placed after the **=** sign
+
+.. figure:: ../Images/AdminGeojson.png
+   :alt: API request for county feature collection
+
+API request for county feature collection
+
+
+
 
 
 

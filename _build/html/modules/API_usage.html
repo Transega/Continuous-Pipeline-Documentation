@@ -105,6 +105,13 @@ through the field in the database that contains the names.</p>
 </div></blockquote>
 <p>This api request returns the actual Geojson file given the county name</p>
 <p>Note <strong>the name has to be in the array since the data is a query to the database.</strong> It returns a feature collection</p>
+<p>County Geojson is queried as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/AdminData/get_adm1_shapefile/?Get_county=Kisumu</span></code></p>
+<p>`` Get_county=`` the name of the county is placed after the <strong>=</strong> sign</p>
+<figure class="align-default">
+<img alt="API request for county feature collection" src="../_images/AdminGeojson.png" />
+</figure>
+<p>API request for county feature collection</p>
 </section>
 </section>
 

@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'Continuous Pipeline Project Documentation'
-copyright = '2022, Collins Asega'
+copyright = '2022, Pula Applied Research Team'
 author = 'Collins Asega'
 
 # The full version, including alpha/beta/rc tags

@@ -1,8 +1,10 @@
-############
-API usage
-############
+#####################################
+API usage Administrative layers query
+#####################################
 
 Hi there this Section of the documentation is to help us understand how to make requests to this API.
+
+base url **http://208.85.21.253:8080/**
 
 
 Getting Admistration level Data
@@ -134,6 +136,7 @@ Note **the name has to be in the array of ward names since the data is a query t
    :alt: API request for ward feature collection
 
 API request for ward feature collection
+
 
 
 

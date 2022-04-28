@@ -12,6 +12,8 @@ Welcome to Continuous Pipeline Project Documentation's documentation!
 
    modules/API_usage.rst
 
+   modules/remote_sensing.rst
+
 
 
 Indices and tables

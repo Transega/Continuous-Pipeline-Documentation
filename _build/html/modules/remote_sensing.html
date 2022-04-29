@@ -75,6 +75,43 @@
 <p>base url <strong>http://208.85.21.253:8080/</strong></p>
 <section id="getting-remote-sensing-data">
 <h2>Getting Remote Sensing Data<a class="headerlink" href="#getting-remote-sensing-data" title="Permalink to this headline"></a></h2>
+<p><em>This end point it used to give Web Map service Url end point and statistics</em></p>
+<p>You only need to pass the parameters as follows:</p>
+<ol class="loweralpha simple">
+<li><p>platform</p></li>
+</ol>
+<p><em>platform is the parameter that tells the system which satelite instrument we are
+interested in as per writting this documentation Landsat and Sentinel are the available platforms</em></p>
+<p>if a request is made and the platform parameter is not supplied the system will respond with the valid platfom parameters
+available</p>
+<figure class="align-default">
+<img alt="" src="../_images/platform_param.png" />
+</figure>
+<p>Platforms available</p>
+<ol class="loweralpha simple" start="2">
+<li><p>sensor</p></li>
+</ol>
+<p>Every satelite has specific sensors mounted for various purposes; and each platfom will have different forms of sensors</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>Landsat</p></li>
+</ol>
+</div></blockquote>
+<p>Landsat has L8 as the available sensor in this implementation</p>
+<figure class="align-default">
+<img alt="" src="../_images/sensorlandsat_param.png" />
+</figure>
+<p>sensors available for Landsat</p>
+<blockquote>
+<div><ol class="lowerroman simple" start="2">
+<li><p>Sentinel</p></li>
+</ol>
+</div></blockquote>
+<p>Sentinel has sentinel_2 in this implementation</p>
+<figure class="align-default">
+<img alt="" src="../_images/sensor_param.png" />
+</figure>
+<p>sensors available for Sentinel</p>
 </section>
 </section>
 

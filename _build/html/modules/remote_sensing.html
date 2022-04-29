@@ -41,6 +41,7 @@
 <li class="toctree-l1"><a class="reference internal" href="API_usage.html">API usage Administrative layers query</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Remote Sensing Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#getting-remote-sensing-data">Getting Remote Sensing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-the-dots">Connecting the Dots</a></li>
 </ul>
 </li>
 </ul>
@@ -98,6 +99,7 @@ available</p>
 </ol>
 </div></blockquote>
 <p>Landsat has L8 as the available sensor in this implementation</p>
+<p><em>Landsat 8 has a sixteen days revisit time, meaning we can get images after every concsecutive 16 days</em></p>
 <figure class="align-default">
 <img alt="" src="../_images/sensorlandsat_param.png" />
 </figure>
@@ -108,10 +110,106 @@ available</p>
 </ol>
 </div></blockquote>
 <p>Sentinel has sentinel_2 in this implementation</p>
+<p><em>Sentinel 2  a six days revisit time, meaning we can get images after every concsecutive 6 days</em></p>
 <figure class="align-default">
 <img alt="" src="../_images/sensor_param.png" />
 </figure>
 <p>sensors available for Sentinel</p>
+<ol class="loweralpha simple" start="3">
+<li><p>product</p></li>
+</ol>
+<p>Once we have a sensor selected we use the images to compute products:</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>Normalized Difference Vegetation Index (NDVI)</p></li>
+</ol>
+</div></blockquote>
+<p>It is arrived at by indexing the Near infrared and the red band from a satelite Image,
+it is a proxy that informs whether or not Vegetation is healthy.</p>
+<blockquote>
+<div><ol class="lowerroman simple" start="2">
+<li><p>Normalized Difference Moisture Index (NDMI)</p></li>
+</ol>
+</div></blockquote>
+<p>The product is arrived at by using Near infrared and Short wave infrared bands from a satelite Imagery,
+it is a proxy for estimating whether or not the crop is water stressed.</p>
+<p><strong>Sentinel_2 has the two products (NDVI and NDMI) while L8 has only NDVI as at now</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/product_landsat.png" />
+</figure>
+<p>Products available available for L8</p>
+<figure class="align-default">
+<img alt="" src="../_images/products_sentinel.png" />
+</figure>
+<p>Products available available for sentinel_2</p>
+<ol class="loweralpha simple" start="4">
+<li><p>geometry</p></li>
+</ol>
+<p><em>The geometry parameter is the boundary layer or the are of interest that the satelite image should fall within</em></p>
+<p><em>In this case the feature collection that we obtain from the backend, instead of providing the actual feature collection we
+provide a name of the specific administrative layer and the system will auto generate the feature collection and use it to do the
+analysis from the backend</em></p>
+<ul class="simple">
+<li><p>If we need a county we specify a parameter county and supply the name</p></li>
+<li><p>If we need a sub-county we specify a parameter sub-county and supply the name</p></li>
+<li><p>If we need a ward we specify a parameter ward and supply the name</p></li>
+</ul>
+<ol class="loweralpha simple" start="5">
+<li><p>dates</p></li>
+</ol>
+<p>The dates are used to filter the period within which the satelite images should fall,
+in this case the system takes the start date and the end date generates bi-weekly dates that fall within that
+period and computes the long-term median and the bi-weekly products.</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>start date</p></li>
+<li><p>end date</p></li>
+</ol>
+</div></blockquote>
+<p>The date parameter can be left blank the system will auto-generate by taking the current date as the end date while,
+it calculates 30 days earlier than the current date as the start date</p>
+<p>The start date has to be less than the end date otherwise the system will throw an error</p>
+<figure class="align-default">
+<img alt="" src="../_images/dates.png" />
+</figure>
+<p>Dates</p>
+</section>
+<section id="connecting-the-dots">
+<h2>Connecting the Dots<a class="headerlink" href="#connecting-the-dots" title="Permalink to this headline"></a></h2>
+<p>Making the api request for remote_sensing data would be as follows</p>
+<ol class="loweralpha">
+<li><p>provide the parameters;</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>the platfom</p></li>
+<li><p>the sensor</p></li>
+<li><p>the product</p></li>
+<li><p>geometry</p></li>
+<li><p>start date</p></li>
+<li><p>end date</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Note the geometry will either be county, sub-county or ward</strong></p>
+<p><em>The request is made as follows:</em></p>
+<ul class="simple">
+<li><p>county request</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-01-01&amp;end_date=2021-05-30&amp;county=Uasin</span> <span class="pre">Gishu</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/countyrequest.png" />
+</figure>
+<p>County RS request</p>
+<ul class="simple">
+<li><p>sub-county request</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-03-01&amp;end_date=2021-04-22&amp;subcounty=Mogotio</span></code></p>
+<ul class="simple">
+<li><p>ward request</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-03-01&amp;end_date=2021-04-22&amp;ward=Emining</span></code></p>
+<p><em>The response from the api contains, image url which is an object with an array of objects that have the time and the image url,it also have time series which is an object with an array of object with time and index values (NDVI or NDMI), the time is in system time stamp</em></p>
 </section>
 </section>
 

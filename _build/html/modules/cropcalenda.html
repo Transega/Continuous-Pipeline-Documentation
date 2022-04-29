@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crop Calenda information &mdash; Continuous Pipeline Project Documentation 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Remote Sensing Data" href="remote_sensing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Continuous Pipeline Project Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="API_usage.html">API usage Administrative layers query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remote_sensing.html">Remote Sensing Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Crop Calenda information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crop-calenda-api-requests">Crop calenda api requests</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Continuous Pipeline Project Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Crop Calenda information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/cropcalenda.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crop-calenda-information">
+<h1>Crop Calenda information<a class="headerlink" href="#crop-calenda-information" title="Permalink to this headline"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>Crop calenda information is vital in the sense that it helps us track the crop growth cycle
+in turn assess the vegetation status in terms of whether or not the crop is performing well.</p>
+<p>A model was built in the backend to store this information, to help in automation of the process of crop
+performance evaluation.</p>
+<p>A model in <strong>django</strong> implementation is the defination of the structure of the database, i.e the name of the fields and the type of data
+stored, whether or not a field can be null, the primary key field etc.</p>
+<p>This model currently has the following fields county_name, crop, stage, start_date and end_date.</p>
+<p>The model can be further improved.</p>
+<p>The information is updated from the django admin page.</p>
+<p>We get this information and compare with what a user request from the remote sensing api to establish the crop conditions
+by applying some logic to be discussed later on this documentation.</p>
+</section>
+<section id="crop-calenda-api-requests">
+<h2>Crop calenda api requests<a class="headerlink" href="#crop-calenda-api-requests" title="Permalink to this headline"></a></h2>
+<ol class="lowerroman simple">
+<li><p>Crops available</p></li>
+</ol>
+<p>This api returns a list of the crops available, this is crucial in only allowing analysis for crops we have crop calenda information</p>
+<p><strong>parameters</strong></p>
+<ul class="simple">
+<li><p>county</p></li>
+</ul>
+<p>supply the name of the country</p>
+<p><em>Note ideally we should have an api with list of counties but for this first version data is available for Kenya</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/cropscalenda.png" />
+</figure>
+<p>Crops available list</p>
+<ol class="lowerroman simple" start="2">
+<li><p>Crop calenda information</p></li>
+</ol>
+<p>This api returns crop calenda information for a specific country and crop in question</p>
+<p><strong>parameters</strong></p>
+<ul class="simple">
+<li><p>country</p></li>
+</ul>
+<p>name of the country</p>
+<ul class="simple">
+<li><p>crop</p></li>
+</ul>
+<p>name of the crop</p>
+<p><em>The crop names is obtained from the available crops api for that country</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya&amp;crop=Wheat</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/cropinfo.png" />
+</figure>
+<p>Crop calenda information for wheat</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="remote_sensing.html" class="btn btn-neutral float-left" title="Remote Sensing Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Pula Applied Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

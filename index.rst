@@ -14,6 +14,8 @@ Welcome to Continuous Pipeline Project Documentation's documentation!
 
    modules/remote_sensing.rst
 
+   modules/cropcalenda.rst
+
 
 
 Indices and tables

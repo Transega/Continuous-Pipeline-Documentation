@@ -43,7 +43,7 @@ This the country level dataset
     ``https://skyfall-pipeline.pula.cloud/cluster_data/get_cluster_names/?country=Kenya``
 
     *Please Note in the current version of skyfall backend some counties may not have the clusters thus analysis is,
-    done using the lower administrative boundary(s). In such a case the api may return an json with an empty list 
+    done using the lower administrative boundary(s). In such a case the api may return an json with an empty list*
 
      .. figure:: ../Images/clusters_country.png
        :alt: API request for project names in a country
@@ -79,12 +79,24 @@ County Geojson is queried as follows:
 
 ``https://skyfall-pipeline.pula.cloud/AdminData/get_adm1_shapefile/?Get_county=Kisumu``
 
+    .. figure:: ../Images/AdminGeojson1.png
+       :alt: API request for county feature collection
+
 `` Get_county=`` the name of the county is placed after the **=** sign
 
-.. figure:: ../Images/AdminGeojson.png
-   :alt: API request for county feature collection
 
-API request for county feature collection
+
+
+    c. Cluster dataset
+
+One can query cluster names that fall within a county as follows;
+
+``https://skyfall-pipeline.pula.cloud/cluster_data/get_cluster_names/?country=Kenya&county=Bungoma``
+
+.. figure:: ../Images/clusters_in_county.png
+   :alt: API request for clusters in county
+
+
 
 * Admistration level two (2)
 
@@ -101,7 +113,7 @@ county_name field of the ADM2DATA is filter and an iteration is done to the fiel
 
 
 **The Query is done as follows**
-``http://208.85.21.253:8080/AdminData/get_adm2_shapefile/?Get_sub_counties_names=Nairobi``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm2_shapefile/?Get_sub_counties_names=Nairobi``
 
 
 .. figure:: ../Images/Admin2names.png
@@ -118,7 +130,7 @@ Note **the name has to be in the array of sub_county_names since the data is a q
 
 **Admin 2 Geojson is queried as follows:**
 
-``http://208.85.21.253:8080/AdminData/get_adm2_shapefile/?sub_county=Mogotio``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm2_shapefile/?sub_county=Mogotio``
 
 ``sub_county=`` the name of the sub_county is placed after the **=** sign
 
@@ -143,7 +155,7 @@ sub_county_name field of the ADM3DATA is filtered and an iteration is done to th
 
 
 **The Query is done as follows**
-``http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?Get_wards_in_sub_county=Mogotio``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm3_shapefile/?Get_wards_in_sub_county=Mogotio``
 
 
 .. figure:: ../Images/Admin3names.png
@@ -160,7 +172,7 @@ Note **the name has to be in the array of ward names since the data is a query t
 
 **Admin 3 Geojson is queried as follows:**
 
-``http://208.85.21.253:8080/AdminData/get_adm3_shapefile/?GetWardGeojson=Emining``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm3_shapefile/?GetWardGeojson=Emining``
 
 ``ward=`` the name of the ward is placed after the **=** sign
 
@@ -171,10 +183,21 @@ API request for ward feature collection
 
 
 
+* Unit Area of Insurance (UAI) (4)
+
+As detailed earlier UAI are used to do analysis for crop insurance puporses in the context of `PULA`_ 
+
+Details on how to access the respective cluster names in a country, county and in some instances sub-county have been
+provided earlier in previous sections. This sub-section shows how to access the geojson for the clusters for visualization and other purposes.
 
 
+**UAI/Cluster 3 Geojson is queried as follows:**
+
+``https://skyfall-pipeline.pula.cloud/cluster_data/get_cluster_geojson/?cluster=KEN_cluster_199``
+
+.. figure:: ../Images/clusterGeojson.png
+   :alt: API request for cluster feature collection
 
 
-
-
+.. _PULA: https://www.pula-advisors.com/
 

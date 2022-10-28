@@ -42,6 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="API_usage.html">API usage Administrative layers query</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Remote Sensing Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#getting-remote-sensing-data">Getting Remote Sensing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-info-on-the-current-implementation-strategy">Additional info on the current implementation strategy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connecting-the-dots">Connecting the Dots</a></li>
 </ul>
 </li>
@@ -75,7 +76,7 @@
   <section id="remote-sensing-data">
 <h1>Remote Sensing Data<a class="headerlink" href="#remote-sensing-data" title="Permalink to this headline"></a></h1>
 <p>Hi there this Section of the documentation is to help us understand how to make requests to this API for remotely sensed data from Google Earth engine Api.</p>
-<p>base url <strong>http://208.85.21.253:8080/</strong></p>
+<p>base url <strong>https://skyfall-pipeline.pula.cloud/</strong> or use the ip <strong>http://208.85.21.253:8100/</strong></p>
 <section id="getting-remote-sensing-data">
 <h2>Getting Remote Sensing Data<a class="headerlink" href="#getting-remote-sensing-data" title="Permalink to this headline"></a></h2>
 <p><em>This end point it used to give Web Map service Url end point and statistics</em></p>
@@ -176,6 +177,19 @@ it calculates 30 days earlier than the current date as the start date</p>
 </figure>
 <p>Dates</p>
 </section>
+<section id="additional-info-on-the-current-implementation-strategy">
+<h2>Additional info on the current implementation strategy<a class="headerlink" href="#additional-info-on-the-current-implementation-strategy" title="Permalink to this headline"></a></h2>
+<p>Due to some reasons the api has been made alittle more intelligent in the sense that the information being,
+retrieved is correlated to a crop a country and a project this is to help the system determine the crop calenda
+information to use, visualization parameters as well as ability to segment crop at risk the module is under active
+development and testing.</p>
+<p>Therefore in this case Additional parameters are neeeded to make this possible this includes</p>
+<ul class="simple">
+<li><p>country</p></li>
+<li><p>crop</p></li>
+<li><p>project</p></li>
+</ul>
+</section>
 <section id="connecting-the-dots">
 <h2>Connecting the Dots<a class="headerlink" href="#connecting-the-dots" title="Permalink to this headline"></a></h2>
 <p>Making the api request for remote_sensing data would be as follows</p>
@@ -189,29 +203,57 @@ it calculates 30 days earlier than the current date as the start date</p>
 <li><p>geometry</p></li>
 <li><p>start date</p></li>
 <li><p>end date</p></li>
+<li><p>project</p></li>
+<li><p>crop</p></li>
+<li><p>country</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
-<p><strong>Note the geometry will either be county, sub-county or ward</strong></p>
+<p><strong>Note the geometry will either be county, sub-county, ward or cluster</strong></p>
 <p><em>The request is made as follows:</em></p>
 <ul class="simple">
 <li><p>county request</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-01-01&amp;end_date=2021-05-30&amp;county=Uasin</span> <span class="pre">Gishu</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;start_date=2022-08-01&amp;end_date=2022-09-29&amp;crop=Maize&amp;country=Kenya&amp;project=KCEP&amp;county=Bungoma&amp;product=NDVI</span></code></p>
 <figure class="align-default">
 <img alt="" src="../_images/countyrequest.png" />
+</figure>
+<p>When parameter statistics is passed and set to true the end point returns statistics for the respective product requested;</p>
+<p>In this case we get the statistics for NDVI by quering as follows;</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;start_date=2022-08-01&amp;end_date=2022-09-29&amp;crop=</span>
+<span class="pre">Maize&amp;country=Kenya&amp;project=KCEP&amp;county=Bungoma&amp;product=NDVI&amp;statistics=true</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/county_statistics.png" />
+</figure>
+<p><em>Another scenario is when we want to get statistics computation for a product in a county but we want this to be done for all clusters that
+fall within that respective county. This request can be mades as shown;</em></p>
+<p>Parameter passed  is <strong>cluster_statistcs_county</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;start_date=2022-08-01</span>
+<span class="pre">&amp;end_date=2022-09-29&amp;crop=Maize&amp;country=Kenya&amp;project=KCEP&amp;product=NDVI&amp;cluster_statistcs_county=Bungoma</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/county_cluster_statistics.png" />
 </figure>
 <p>County RS request</p>
 <ul class="simple">
 <li><p>sub-county request</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-03-01&amp;end_date=2021-04-22&amp;subcounty=Mogotio</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;start_date</span>
+<span class="pre">=2022-08-01&amp;end_date=2022-09-29&amp;crop=Maize&amp;country=Kenya&amp;project=KCEP&amp;subcounty=Mogotio&amp;product=NDVI</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/subcounty_request.png" />
+</figure>
 <ul class="simple">
 <li><p>ward request</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;product=NDVI&amp;start_date=2021-03-01&amp;end_date=2021-04-22&amp;ward=Emining</span></code></p>
-<p><em>The response from the api contains, image url which is an object with an array of objects that have the time and the image url,it also have time series which is an object with an array of object with time and index values (NDVI or NDMI), the time is in system time stamp</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/RemotesensingApi/get_rsAdmi1/?platform=Sentinel&amp;sensor=Sentinel_2&amp;start_date=2022-08-01</span>
+<span class="pre">&amp;end_date=2022-09-29&amp;crop=Maize&amp;country=Kenya&amp;project=KCEP&amp;ward=Ngeria&amp;product=NDVI</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/ward_request.png" />
+</figure>
+<p><em>The response from the api contains, image url which is an object with an array of objects that have
+the time and the image url,it also have time series which is an object with an array of object with time
+and index values (NDVI, NDMI or Flood), the time is in system time stamp</em></p>
 </section>
 </section>
 
@@ -226,7 +268,9 @@ it calculates 30 days earlier than the current date as the start date</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Pula Applied Research Team.</p>
+    <p>&#169; Copyright 2022, PULA.
+      <span class="lastupdated">Last updated on 2022-10-28.
+      </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

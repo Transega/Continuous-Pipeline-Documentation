@@ -16,6 +16,8 @@ Welcome to Continuous Pipeline Project Documentation's documentation!
 
    modules/cropcalenda.rst
 
+   modules/other_modules.rst
+
 
 
 Indices and tables

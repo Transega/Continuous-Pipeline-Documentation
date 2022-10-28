@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Other Useful Modules &mdash; Continuous Pipeline Project Documentation 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Crop Calenda information" href="cropcalenda.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Continuous Pipeline Project Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="API_usage.html">API usage Administrative layers query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remote_sensing.html">Remote Sensing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cropcalenda.html">Crop Calenda information</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Other Useful Modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Continuous Pipeline Project Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Other Useful Modules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/other_modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="other-useful-modules">
+<h1>Other Useful Modules<a class="headerlink" href="#other-useful-modules" title="Permalink to this headline"></a></h1>
+<p>This section discusses other modules that are available on skyfall backend that aid
+in helping to develop the products.</p>
+<p>They include <strong>Crop Musk Thresholding, Crop Condition Logic</strong></p>
+<ul class="simple">
+<li><p>Crop Musk Thresholding</p></li>
+</ul>
+<p>The crop mask thresholding is a module that helps in creation of crop mask for different
+crops for instance maize, or wheat cotton etc. It follows a multi-date thresholding for index
+based crop mask. In some sense, use of NDVI and applying thresholds depending on crop stages thus
+we create a crop mask layer using the threshold.</p>
+<p>This can be set using the <a class="reference external" href="https://skyfall-pipeline.pula.cloud/admin/">dashboard</a> and put custome values</p>
+<figure class="align-default">
+<img alt="" src="../_images/threshold_dash.png" />
+</figure>
+<ul class="simple">
+<li><p>Crop Condition Logic</p></li>
+</ul>
+<p>This module is integral in computing crop at risk based on the crop stage.</p>
+<p>It has Crop and product as character fields while emergence, maturity and harvest as json fields</p>
+<p>The Json in the three aforementioned fields, they each contain a key name Risk which has a list inside,
+for NDVI the list has one value while for NDMI the list has two values.</p>
+<p>This can also be set by <a class="reference external" href="https://skyfall-pipeline.pula.cloud/admin/">dashboard</a></p>
+<figure class="align-default">
+<img alt="" src="../_images/crop_cond_logic.png" />
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cropcalenda.html" class="btn btn-neutral float-left" title="Crop Calenda information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PULA.
+      <span class="lastupdated">Last updated on 2022-10-28.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

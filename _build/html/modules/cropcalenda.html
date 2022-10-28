@@ -18,6 +18,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Other Useful Modules" href="other_modules.html" />
     <link rel="prev" title="Remote Sensing Data" href="remote_sensing.html" /> 
 </head>
 
@@ -45,6 +46,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#crop-calenda-api-requests">Crop calenda api requests</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="other_modules.html">Other Useful Modules</a></li>
 </ul>
 
         </div>
@@ -81,7 +83,9 @@ in turn assess the vegetation status in terms of whether or not the crop is perf
 performance evaluation.</p>
 <p>A model in <strong>django</strong> implementation is the defination of the structure of the database, i.e the name of the fields and the type of data
 stored, whether or not a field can be null, the primary key field etc.</p>
-<p>This model currently has the following fields county_name, crop, stage, start_date and end_date.</p>
+<p>This model currently has the following fields country_name,
+county_name, crop, stage, project_name,
+start_date and end_date.</p>
 <p>The model can be further improved.</p>
 <p>The information is updated from the django admin page.</p>
 <p>We get this information and compare with what a user request from the remote sensing api to establish the crop conditions
@@ -98,12 +102,20 @@ by applying some logic to be discussed later on this documentation.</p>
 <li><p>county</p></li>
 </ul>
 <p>supply the name of the country</p>
-<p><em>Note ideally we should have an api with list of counties but for this first version data is available for Kenya</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya</span></code></p>
 <figure class="align-default">
 <img alt="" src="../_images/cropscalenda.png" />
 </figure>
-<p>Crops available list</p>
+<p>Since we have county name we can query for crop list as per a particualar county, this however depends on
+whether the county has been added, in the event the county doesnt have data the api will return the default for the
+country. Moreover since crops may vary per project adding project parameter will help to
+filter only crops for that project. For example</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya&amp;project=KCEP</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/crops_per_project.png" />
+</figure>
+<p><em>Crops available list</em></p>
+<p>Notice in the above request KCEP project does not have wheat crop</p>
 <ol class="lowerroman simple" start="2">
 <li><p>Crop calenda information</p></li>
 </ol>
@@ -117,12 +129,20 @@ by applying some logic to be discussed later on this documentation.</p>
 <li><p>crop</p></li>
 </ul>
 <p>name of the crop</p>
+<ul class="simple">
+<li><p>project</p></li>
+</ul>
+<p>name of the project</p>
+<ul class="simple">
+<li><p>county</p></li>
+</ul>
+<p>county name (optional)</p>
 <p><em>The crop names is obtained from the available crops api for that country</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya&amp;crop=Wheat</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya&amp;project=KCEP&amp;crop=Maize</span></code></p>
 <figure class="align-default">
 <img alt="" src="../_images/cropinfo.png" />
 </figure>
-<p>Crop calenda information for Wheat</p>
+<p>Crop calenda information for Maize</p>
 </section>
 </section>
 
@@ -131,6 +151,7 @@ by applying some logic to be discussed later on this documentation.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="remote_sensing.html" class="btn btn-neutral float-left" title="Remote Sensing Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="other_modules.html" class="btn btn-neutral float-right" title="Other Useful Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

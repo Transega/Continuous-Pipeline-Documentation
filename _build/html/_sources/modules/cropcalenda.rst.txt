@@ -14,7 +14,9 @@ performance evaluation.
 A model in **django** implementation is the defination of the structure of the database, i.e the name of the fields and the type of data 
 stored, whether or not a field can be null, the primary key field etc. 
 
-This model currently has the following fields county_name, crop, stage, start_date and end_date.
+This model currently has the following fields country_name, 
+county_name, crop, stage, project_name, 
+start_date and end_date.
 
 The model can be further improved. 
 
@@ -36,15 +38,27 @@ This api returns a list of the crops available, this is crucial in only allowing
 
 supply the name of the country
 
-*Note ideally we should have an api with list of counties but for this first version data is available for Kenya*
 
-``http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya``
+``https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya``
 
 
 .. figure:: ../Images/cropscalenda.png
    :alt: 
 
-Crops available list
+Since we have county name we can query for crop list as per a particualar county, this however depends on 
+whether the county has been added, in the event the county doesnt have data the api will return the default for the 
+country. Moreover since crops may vary per project adding project parameter will help to 
+filter only crops for that project. For example 
+
+``https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya&project=KCEP``
+
+.. figure:: ../Images/crops_per_project.png
+   :alt: 
+
+*Crops available list*
+
+Notice in the above request KCEP project does not have wheat crop 
+
 
 ii. Crop calenda information
 
@@ -60,16 +74,24 @@ name of the country
 
 name of the crop 
 
+* project
+
+name of the project 
+
+* county 
+
+county name (optional)
+
 *The crop names is obtained from the available crops api for that country*
 
 
-``http://208.85.21.253:8080/CropCalenderApi/getCrops/?country=Kenya&crop=Wheat``
+``https://skyfall-pipeline.pula.cloud/CropCalenderApi/getCrops/?country=Kenya&project=KCEP&crop=Maize``
 
 
 .. figure:: ../Images/cropinfo.png
    :alt: 
 
-Crop calenda information for Wheat
+Crop calenda information for Maize
 
 
 

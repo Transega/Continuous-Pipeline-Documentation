@@ -4,7 +4,7 @@ API usage Administrative layers query
 
 Hi there this Section of the documentation is to help us understand how to make requests to this API.
 
-base url **http://208.85.21.253:8080/**
+base url **https://skyfall-pipeline.pula.cloud/** or use the ip **http://208.85.21.253:8100/** 
 
 
 Getting Admistration level Data
@@ -15,6 +15,38 @@ they are basically shapefiles or feature collection and vary according to the le
 * Admistration level zero (0)
 
 This the country level dataset 
+    a. Country list 
+    Returns list of countries available in the system by querying;
+
+    ``https://skyfall-pipeline.pula.cloud/AdminData/get_adm0_data/?country_names=ALL``
+
+    .. figure:: ../Images/countries.png
+       :alt: API request for country names 
+    
+    b. Projects information
+
+    Each country available may have projects differing in the sence of crop calenda and covrage,
+    this api returns the projects available for a respective country, remember the country name has to be from the,
+    country list api.
+
+    ``https://skyfall-pipeline.pula.cloud/CropCalenderApi/get_projects/?country=Pakistan``
+
+    .. figure:: ../Images/projects.png
+       :alt: API request for project names in a country
+
+    c. clusters information
+
+    clusters are what may be considered unit of insurance, they are usually created to simulate or,
+    represent areas with homegenearity in terms of climate, soils and topography. to get list of names of clusters 
+    in a country query the api as follows.
+
+    ``https://skyfall-pipeline.pula.cloud/cluster_data/get_cluster_names/?country=Kenya``
+
+    *Please Note in the current version of skyfall backend some counties may not have the clusters thus analysis is,
+    done using the lower administrative boundary(s). In such a case the api may return an json with an empty list 
+
+     .. figure:: ../Images/clusters_country.png
+       :alt: API request for project names in a country
 
 * Admistration level one (1)
 
@@ -28,7 +60,7 @@ through the field in the database that contains the names.
 
 That information is queried as follows 
 
-``http://208.85.21.253:8080/AdminData/get_adm1_shapefile/?county_names=ALL``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm1_shapefile/?county_names=ALL&country_name=Kenya``
 
 The response is a json object with key **counties** and item is an **array** containing the names of the counties
 
@@ -45,7 +77,7 @@ Note **the name has to be in the array since the data is a query to the database
 
 County Geojson is queried as follows:
 
-``http://208.85.21.253:8080/AdminData/get_adm1_shapefile/?Get_county=Kisumu``
+``https://skyfall-pipeline.pula.cloud/AdminData/get_adm1_shapefile/?Get_county=Kisumu``
 
 `` Get_county=`` the name of the county is placed after the **=** sign
 

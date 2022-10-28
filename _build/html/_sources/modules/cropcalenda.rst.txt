@@ -69,5 +69,7 @@ name of the crop
 .. figure:: ../Images/cropinfo.png
    :alt: 
 
-Crop calenda information for wheat
+Crop calenda information for Wheat
+
+
 
